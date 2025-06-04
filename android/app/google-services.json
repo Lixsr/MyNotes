@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "291524424569",
+    "project_id": "osamah-notes",
+    "storage_bucket": "osamah-notes.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:291524424569:android:bc71385eb1c13edddd35a8",
+        "android_client_info": {
+          "package_name": "me.alnahari.notes"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZ5GI7ZqKtfdL7rqmH1yDy5nR6vTZ8IBA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
