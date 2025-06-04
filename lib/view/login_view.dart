@@ -13,7 +13,6 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  // late: promises the variable will be initialized before being used. (trust me flutter).
   late final TextEditingController _email;
   late final TextEditingController _password;
 
@@ -34,7 +33,7 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Sign up")),
+      appBar: AppBar(title: const Text("Sign in")),
       body: FutureBuilder(
         future: Firebase.initializeApp(
           options: DefaultFirebaseOptions.currentPlatform,
@@ -67,13 +66,13 @@ class _LoginViewState extends State<LoginView> {
                       final email = _email.text;
                       final password = _password.text;
                       final userCredentials = await FirebaseAuth.instance
-                          .createUserWithEmailAndPassword(
+                          .signInWithEmailAndPassword(
                             email: email,
                             password: password,
                           );
-                      print("User created: ${userCredentials.user?.email}");
+                      print("User signed in: ${userCredentials.user?.email}");
                     },
-                    child: const Text("Sign up"),
+                    child: const Text("Sign in"),
                   ),
                 ],
               );
