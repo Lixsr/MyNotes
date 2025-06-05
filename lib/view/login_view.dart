@@ -65,12 +65,18 @@ class _LoginViewState extends State<LoginView> {
                     onPressed: () async {
                       final email = _email.text;
                       final password = _password.text;
-                      final userCredentials = await FirebaseAuth.instance
-                          .signInWithEmailAndPassword(
-                            email: email,
-                            password: password,
-                          );
-                      print("User signed in: ${userCredentials.user?.email}");
+                      try {
+                        final userCredentials = await FirebaseAuth.instance
+                            .signInWithEmailAndPassword(
+                              email: email,
+                              password: password,
+                            );
+                        print("User signed in: ${userCredentials.user?.email}");
+                      } on FirebaseAuthException catch (e) {
+                        
+                      } catch (e) {
+                        print("Error signing in: $e");
+                      }
                     },
                     child: const Text("Sign in"),
                   ),

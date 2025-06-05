@@ -24,7 +24,7 @@ void main() {
           foregroundColor: Colors.black,
         ),
       ),
-      home: const LoginView(),
+      home: const RegisterView(),
     ),
   );
 }
@@ -90,12 +90,24 @@ class _RegisterViewState extends State<RegisterView> {
                     onPressed: () async {
                       final email = _email.text;
                       final password = _password.text;
-                      final userCredentials = await FirebaseAuth.instance
-                          .createUserWithEmailAndPassword(
-                            email: email,
-                            password: password,
-                          );
-                      print("User created: ${userCredentials.user?.email}");
+                      try {
+                        final userCredentials = await FirebaseAuth.instance
+                            .createUserWithEmailAndPassword(
+                              email: email,
+                              password: password,
+                            );
+                        print("User created: ${userCredentials.user?.email}");
+                      } on FirebaseAuthException catch (e) {
+                        if (e.code == 'weak-password') {
+                          print('The password provided is too weak.');
+                        } else if (e.code == 'email-already-in-use') {
+                          print('The account already exists for that email.');
+                        } else {
+                          print('Error: ${e.code}');
+                        }
+                      } catch (e) {
+                        print('Error: $e');
+                      }
                     },
                     child: const Text("Sign up"),
                   ),
